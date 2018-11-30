@@ -11,29 +11,39 @@
 
     <div id="app">
         <div class="grid-controls">
-            <button type="button" class="btn is-primary">run</button>
+            <button type="button" class="btn is-primary" @click="updateIframe">run</button>
         </div>
         <div class="grid-template container is-dark with-title">
             <label class="title">template</label>
-            <div contenteditable class="contentedit" ref="tmpl"></div>
+            <pre contenteditable class="contentedit" v-html="tmpl" ref="tmpl">
+            </pre>
         </div>
         <div class="grid-js container is-dark with-title">
             <label class="title">js</label>
-            <div contenteditable class="contentedit" ref="js"></div>
+            <pre contenteditable class="contentedit" v-html="js" ref="js">
+                {
+                    data () {
+                        return {
+                            teste: 1
+                        }
+                    }
+                }
+            </pre>
         </div>
         <div class="grid-css container is-dark with-title">
             <label class="title">css</label>
-            <div contenteditable class="contentedit" ref="css"></div>
+            <pre contenteditable class="contentedit" v-html="css" ref="css"></pre>
         </div>
         <div class="grid-output container with-title">
             <label class="title">output</label>
-            <div contenteditable class="contentedit" ref="output">
-                <iframe sandbox srcdoc="<head><meta test=&#34;yay&#34;></head>hello" frameborder="0"></iframe>
+            <div contenteditable class="contentedit">
+                <iframe class="iframe" sandbox="allow-scripts" :srcdoc="output" frameborder="0"></iframe>
             </div>
         </div>
     </div>
 
     <script src="js/vue.js"></script>
+    <script src="js/capture-key.js"></script>
     <script type="module" src="js/main.js"></script>
 
 </body>
